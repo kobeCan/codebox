@@ -1,0 +1,14 @@
+.flex-table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+}

@@ -1,0 +1,14 @@
+<p>table works!</p>
+<flex-table [columns]="columns" [dataSource]="dataSource" [headers]="headers">
+  <flex-table-header slot="application">
+    <ng-template let-header let-column="column">
+      <button>{{ header[column.field] }}</button>
+    </ng-template>
+  </flex-table-header>
+
+  <flex-table-column slot="application">
+    <ng-template let-row let-column="column">
+      {{ row.type }}
+    </ng-template>
+  </flex-table-column>
+</flex-table>

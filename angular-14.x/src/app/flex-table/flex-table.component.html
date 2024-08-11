@@ -1,0 +1,53 @@
+<table class="flex-table">
+  <colgroup>
+    <ng-container *ngFor="let column of columns">
+      <col [width]="column.width ?? '10%'" />
+    </ng-container>
+  </colgroup>
+
+  <thead>
+    <ng-container *ngFor="let header of normalizeHeaders">
+      <tr>
+        <ng-container *ngFor="let column of columns">
+          <th>
+            <ng-container *ngIf="headerComponents.has(column.field)">
+              <ng-template
+                *ngTemplateOutlet="
+                  headerComponents.get(column.field).templateRef;
+                  context: { $implicit: header, column }
+                "
+              ></ng-template>
+            </ng-container>
+
+            <ng-container *ngIf="!headerComponents.has(column.field)">
+              {{ header[column.field] }}
+            </ng-container>
+          </th>
+        </ng-container>
+      </tr>
+    </ng-container>
+  </thead>
+
+  <tbody>
+    <ng-container *ngFor="let row of dataSource">
+      <tr>
+        <ng-container *ngFor="let column of columns">
+          <td>
+            <ng-container *ngIf="columnComponents.has(column.field)">
+              <ng-template
+                *ngTemplateOutlet="
+                  columnComponents.get(column.field).templateRef;
+                  context: { $implicit: row, column }
+                "
+              ></ng-template>
+            </ng-container>
+
+            <ng-container *ngIf="!columnComponents.has(column.field)">
+              {{ row[column.field] }}
+            </ng-container>
+          </td>
+        </ng-container>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
